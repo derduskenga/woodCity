@@ -34,3 +34,5 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 * camelCase for Method
 * Undescore for composite variables
 * K&R Coding style, preferably
+
+NOTE: Recomemded IDE, phpStorm because of git support and class autoload
