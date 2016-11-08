@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpProjectServersManager">
+    <servers>
+      <server host="localhost" id="4bbdb805-27e2-4269-b65d-c819873a82aa" name="Laravel Server" port="8080" />
+    </servers>
+  </component>
+</project>
