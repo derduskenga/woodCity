@@ -155,11 +155,17 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        
+        /*
+        * Custom Service Providers
+        */
+        Zizaco\Entrust\EntrustServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
     /*
-    |--------------------------------------------------------------------------
+    |---------------------------------------'Entrust'   => Zizaco\Entrust\EntrustFacade::class,-----------------------------------
     | Class Aliases
     |--------------------------------------------------------------------------
     |
@@ -201,6 +207,13 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        
+        /*
+        * Custom Aliases
+        */
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

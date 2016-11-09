@@ -6,6 +6,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    use EntrustUserTrait; // This uses the entrust for modeling
+    
     /**
      * The attributes that are mass assignable.
      *
