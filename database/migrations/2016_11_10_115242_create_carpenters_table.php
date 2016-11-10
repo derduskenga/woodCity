@@ -14,11 +14,8 @@ class CreateCarpentersTable extends Migration
     {
         Schema::create('carpenters', function (Blueprint $table) {
             $table->increments('id');
-             $table->string('username');
-               $table->string('othername');
-                 $table->mediumInteger('contact');
-                   $table->string('address');
-                       $table->timestamps();
+//TODO: We need to discuss on what to do this!
+            $table->timestamps();
         });
     }
 
