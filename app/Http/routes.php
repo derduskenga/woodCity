@@ -16,5 +16,26 @@ Route::get('/', function () {
 });
 
 Route::auth();
+Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate'); // route for email activation
+
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
+    Route::get('/', function ()    {
+        // Uses Auth Middleware
+        return "Admin page";
+    });
+
+    Route::get('users/', function () {
+        return view("modules.admin.users");
+    });
+});
+
+
+Route::group(['domain' => '{account}.woodcity.app'], function () {
+    Route::get('/', function ($account) {
+        //
+        return "Hello subdomain " . $account;
+    });
+});
