@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Role;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -61,6 +62,12 @@ class AuthController extends Controller
 
         $user = $this->create($request->all());
 
+//TODO: The assignment of roles should be dynamic and using Events.
+
+        $client = Role::where('name', '=', 'client')->first();
+
+        $user->attachRole($client);
+        $user->save();
         $this->activationService->sendActivationMail($user);
 
         return redirect('/login')->with('status', 'We sent you an activation code. Check your email.');
