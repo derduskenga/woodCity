@@ -18,11 +18,11 @@
         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
                 <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
-                    <li role="presentation" class="active">
-                        <a href="#">Users</a>
+                    <li role="presentation" class="{{ (\Request::route()->getName() == 'admin.user.index') ? 'active' : '' }}">
+                        <a href="{{ route('admin.user.index') }}">Users</a>
                     </li>
-                    <li role="presentation">
-                        <a href="#">Roles</a>
+                    <li role="presentation" class="{{ (\Request::route()->getName() == 'admin.role.index') ? 'active' : '' }}">
+                        <a href="{{ route('admin.role.index') }}">Roles</a>
                     </li>
                     <li role="presentation">
                         <a href="#">Settings</a>

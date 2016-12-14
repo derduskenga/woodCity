@@ -33,85 +33,40 @@
                                             Roles
                                         </th>
                                         <th>
+                                            Active
+                                        </th>
+                                        <th>
                                             Action
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody>
+
+                                    @foreach($users as $user)
                                     <tr>
 
                                         <td>
-                                            <a href="#">John Peter</a>
+                                            <a href="#">{{ $user->name }}</a>
                                         </td>
                                         <td>
-                                            peter@john.com
+                                            {{ $user->email }}
                                         </td>
                                         <td>
-                                            Administrator
+                                            <ul>
+                                            @foreach($user->roles as $role)
+                                                <li><a href="#">{{ $role->display_name }}</a></li>
+                                                @endforeach
+                                            </ul>
                                         </td>
                                         <td>
-                                            <a href="#">Edit</a><a href="#">delete</a>
+                                        <a href="#">{{ $user->activated }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.user.edit', ['id' => $user->id]) }}">Edit</a> - <a href="#">delete</a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <a href="#">Wesonga Kamau</a>
-                                        </td>
-                                        <td>
-                                            wesgona@gmail.com
-                                        </td>
-                                        <td>
-                                            Coordinator
-                                        </td>
-                                        <td>
-                                            <a href="#">Edit</a><a href="#">delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
+                                    @endforeach
 
-                                        <td>
-                                            <a href="#">Ernestine Wimberly</a>
-                                        </td>
-                                        <td>
-                                            wimberly@yahoo.com
-                                        </td>
-                                        <td>
-                                            Shipment
-                                        </td>
-                                        <td>
-                                            <a href="#">Edit</a><a href="#">delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td>
-                                            <a href="#">August Forde</a>
-                                        </td>
-                                        <td>
-                                            forde@hotmail.com
-                                        </td>
-                                        <td>
-                                            Administrator
-                                        </td>
-                                        <td>
-                                            <a href="#">Edit</a><a href="#">delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-
-                                        <td>
-                                            <a href="#">Earleen Mattie</a>
-                                        </td>
-                                        <td>
-                                            earleen@strathmore.edu
-                                        </td>
-                                        <td>
-                                            Manager
-                                        </td>
-                                        <td>
-                                            <a href="#">Edit</a><a href="#">delete</a>
-                                        </td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -126,7 +81,8 @@
     <div class="modal fade" id="add-user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="">
+                {!! Form::open(['route' => 'admin.user.store']) !!}
+
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Add New User</h4>
@@ -137,25 +93,27 @@
                             <div class="form-group">
                                 <label for="name" class="col-sm-4 control-label">Name</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" id="name" placeholder="Name">
+                                    {{ Form::text('name', '',['class' => 'form-control', 'placeholder' => 'Name']) }}
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="email" class="col-sm-4 control-label">Email</label>
                                 <div class="col-sm-6">
-                                    <input type="email" class="form-control" id="email" placeholder="Email">
+                                    {{ Form::email('email', '',['class' => 'form-control', 'placeholder' => 'user@example.com']) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="col-sm-4 control-label">Password</label>
+                                <div class="col-sm-6">
+                                    {{ Form::password('password',['class' => 'form-control', 'placeholder' => 'Password']) }}
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="role" class="col-sm-4 control-label">Role</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" name="role" id="role">
-                                        <option value="1">Administrator</option>
-                                        <option value="1">Manager</option>
-                                        <option value="1">Coordinator</option>
-                                        <option value="1">Finance</option>
-                                    </select>
+                                    {{ Form::select('roles[]', \App\Role::all()->lists('display_name', 'id'), '', ['class' => 'form-control', 'multiple' => 'multiple', 'id' => 'roles']) }}
                                 </div>
                             </div>
 
@@ -167,7 +125,7 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary">Add User</button>
                     </div>
-                </form>
+                {!! Form::close() !!}
             </div>
 
         </div>
@@ -177,6 +135,7 @@
 @section("script")
     $(document).ready(function() {
     $('#users').DataTable();
+    $('#roles').multiselect();
     } );
 
 @endsection

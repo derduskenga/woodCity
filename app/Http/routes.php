@@ -24,12 +24,13 @@ Route::get('/home', 'HomeController@index');
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('/', function ()    {
         // Uses Auth Middleware
-        return "Admin page";
+        return view('home');
     });
 
-    Route::get('users/', function () {
-        return view("modules.admin.users");
-    });
+    Route::resource('user', 'UserController');
+    Route::resource('role', 'RoleController');
+    Route::resource('permission', 'PermissionController');
+
 });
 
 

@@ -63,11 +63,11 @@ class AuthController extends Controller
         $user = $this->create($request->all());
 
 //TODO: The assignment of roles should be dynamic and using Events.
+        $user->save();
 
         $client = Role::where('name', '=', 'client')->first();
 
-        $user->attachRole($client);
-        $user->save();
+        $user->attachRole($client); // this has to come after the user is saved
         $this->activationService->sendActivationMail($user);
 
         return redirect('/login')->with('status', 'We sent you an activation code. Check your email.');
