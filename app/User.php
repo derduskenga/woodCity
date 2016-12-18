@@ -33,4 +33,10 @@ class User extends Authenticatable
     protected $casts = [
         'activated' => 'boolean',
     ];
+
+    public function products()
+    {
+        return $this->belongsTo('App\Product');
+    }
+
 }
