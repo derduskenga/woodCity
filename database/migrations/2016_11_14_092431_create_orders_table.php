@@ -3,6 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
+// TODO: in the future there might be the need to add a note field
 class CreateOrdersTable extends Migration
 {
     /**

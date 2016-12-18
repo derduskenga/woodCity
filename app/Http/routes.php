@@ -21,6 +21,23 @@ Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name(
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/profile', 'ClientController@index')->name('profile.show');
+
+
+
+
+Route::group(['middleware' => 'auth', 'prefix' => 'client'], function () {
+
+
+    Route::post('/update', 'ClientController@update')->name('client.profile.update');
+
+    Route::post('/address/add', 'AddressController@store')->name('client.address.add');
+
+    Route::get('/orders', 'OrderController@index')->name('client.orders');
+
+});
+
+
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     Route::get('/', function ()    {
         // Uses Auth Middleware

@@ -9,10 +9,8 @@ class Client extends Model
     //
     protected $table = 'clients';
 
-    public function addresses()
-    {
-        return $this->hasMany('App\Address');
-    }
+    protected $fillable = ['f_name', 'l_name', 'phone_no', 'user_id'];
+
 
     public function orders()
     {
