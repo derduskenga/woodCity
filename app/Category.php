@@ -9,6 +9,6 @@ class Category extends Model
     //
 
     public function products(){
-        
+
     }
 }
