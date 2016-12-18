@@ -57,3 +57,9 @@ Route::group(['domain' => '{account}.woodcity.app'], function () {
         return "Hello subdomain " . $account;
     });
 });
+
+
+
+
+Route::get('/redirect', 'SocialAuthController@redirect')->name('social.fb.redirect');
+Route::get('/callback', 'SocialAuthController@callback')->name('social.fb.callback');

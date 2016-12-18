@@ -34,5 +34,11 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    
+    'facebook' => [
+        'client_id' => '1283795694997697',
+        'client_secret' => 'f420cff74dd95a1068fcd12ba65cb53b',
+        'redirect' => 'https://woodcity.app/callback',
+    ],
 
 ];

@@ -147,7 +147,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-Laravel\Socialite\SocialiteServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -161,6 +160,7 @@ Laravel\Socialite\SocialiteServiceProvider::class,
         */
         Zizaco\Entrust\EntrustServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -208,7 +208,6 @@ Laravel\Socialite\SocialiteServiceProvider::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-'Socialize' => Laravel\Socialite\Facades\Socialite::class,
         
         /*
         * Custom Aliases
@@ -216,6 +215,7 @@ Laravel\Socialite\SocialiteServiceProvider::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Socialize' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
