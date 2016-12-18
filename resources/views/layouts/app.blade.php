@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jszip-2.5.0/pdfmake-0.1.18/dt-1.10.12/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/cr-1.3.2/se-1.2.0/datatables.min.css"/>
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap-multiselect.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-social.css') }}">
 
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
@@ -31,6 +32,16 @@
         .fa-btn {
             margin-right: 6px;
         }
+
+        #socil-login{
+            border-right: solid 1px #e8e8e8;
+        }
+
+        #socil-login div{
+            margin-bottom: 10px;
+        }
+
+
     </style>
 
     <style>

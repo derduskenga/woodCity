@@ -61,6 +61,6 @@ Route::group(['domain' => '{account}.woodcity.app'], function () {
 
 
 
-Route::get('/redirect//w{provider}', 'SocialAuthController@redirect')->name('social.redirect');
+Route::get('/redirect/{provider}', 'SocialAuthController@redirect')->name('social.redirect');
 
 Route::get('/callback/{provider}', 'SocialAuthController@callback')->name('social.callback');
