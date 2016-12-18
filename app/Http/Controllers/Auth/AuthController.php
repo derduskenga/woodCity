@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Role;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -122,4 +124,33 @@ class AuthController extends Controller
         }
         abort(404);
     }
+
+
+
+//    TODO: Need to create a view and a route to handle this function
+    public function updatePassword()
+    {
+
+        $user = Auth::user();
+        $rules = array(
+            'old_password' => 'required',
+            'password' => 'required|alphaNum|between:6,16|confirmed'
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect()->route('change-password', $user->id)->withErrors($validator);
+        } else {
+            if (!Hash::check(Input::get('old_password'), $user->password)) {
+                return redirect()->route('change-password', $user->id)->withErrors('Your old password does not match');
+            } else {
+                $user->password = bcrypt(Input::get('password'));
+                $user->save();
+                return redirect()->route('change-password', $user->id)->with("message", "Password have been changed");
+            }
+        }
+    }
+
+
 }
