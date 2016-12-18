@@ -38,7 +38,19 @@ return [
     'facebook' => [
         'client_id' => '1283795694997697',
         'client_secret' => 'f420cff74dd95a1068fcd12ba65cb53b',
-        'redirect' => 'https://woodcity.app/callback',
+        'redirect' => 'http://woodcity.app/callback/facebook',
+    ],
+
+    'twitter' => [
+        'client_id' => 'Nob5lY05mQmPqy1aSOvcsA3OW',
+        'client_secret' => 'elqviaMoZ1rT1yk6EMWEjAkDiOth85mT1rEuFfiT8kelLSNp7n',
+        'redirect' => 'http://woodcity.app/callback/twitter',
+    ],
+
+    'google' => [
+        'client_id' => '462357463977-2a83pkjp6thb0ijcl1dk0ne6re3d0v7l.apps.googleusercontent.com',
+        'client_secret' => 'l7XOziNEZ_bmIutnlcfk9bCD',
+        'redirect' => 'http://woodcity.app/callback/google',
     ],
 
 ];

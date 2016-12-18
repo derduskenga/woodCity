@@ -14,17 +14,19 @@ class SocialAuthController extends Controller
     /**
      * @return mixed
      */
-    public function redirect()
+    public function redirect($provider)
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
-    public function callback(SocialAccountService $service)
+    public function callback(SocialAccountService $service, $provider)
     {
-        $user = $service->createOrGetUser(Socialite::driver('facebook')->user());
+        // Important change from previous post is that I'm now passing
+        // whole driver, not only the user. So no more ->user() part
+        $user = $service->createOrGetUser(Socialite::driver($provider));
 
         auth()->login($user);
 
-        return redirect()->to('/home'); // the page to show
+        return redirect()->to('/home');
     }
 }

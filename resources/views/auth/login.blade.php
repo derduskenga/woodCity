@@ -67,7 +67,11 @@
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
                                 <br>
-                                <a class="btn btn-link" href="{{ route('social.fb.redirect') }}">FBLogin</a>
+                                <a class="btn btn-link" href="{{ route('social.redirect', 'facebook') }}">FBLogin</a>
+                                <br>
+                                <a class="btn btn-link" href="{{ route('social.redirect', 'twitter') }}">Twitter</a>
+                                <br>
+                                <a class="btn btn-link" href="{{ route('social.redirect', 'google') }}">GPlus</a>
                             </div>
                         </div>
                     </form>
