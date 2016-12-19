@@ -24,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
+        // this is where the views are redirected once logged in depending on the role of the user
         return view('home');
     }
+    
 }

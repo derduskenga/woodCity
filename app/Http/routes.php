@@ -11,17 +11,24 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::auth();
 Route::get('user/activation/{token}', 'Auth\AuthController@activateUser')->name('user.activate'); // route for email activation
 
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'IndexController@index')->name('landing-page');
+
+
+Route::get('/home', 'HomeController@index')->name('homepage');
 
 Route::get('/profile', 'ClientController@index')->name('profile.show');
+
+
+Route::group(['prefix' => 'shop'], function () {
+    
+    Route::get('/cart', 'CartController@index')->name('cart.index');
+    Route::get('/product/{id}', 'ProductController@show')->name('product.detail');
+    
+});
 
 
 
