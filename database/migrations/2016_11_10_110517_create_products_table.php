@@ -10,6 +10,8 @@ class CreateProductsTable extends Migration
      *
      * @return void
      */
+
+//    TODO: Add the published feature
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
@@ -17,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->integer('price');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

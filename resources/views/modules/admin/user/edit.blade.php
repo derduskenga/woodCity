@@ -18,7 +18,7 @@
                                     <h3>Edit: {{ $user->name }}</h3>
                                     <hr>
 
-                                    {!! Form::model($user, ['route' => ['admin.user.update', $user]]) !!}
+                                    {!! Form::model($user, ['route' => ['admin.user.update', $user], 'method' => 'PUT']) !!}
 
 
 
