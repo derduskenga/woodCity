@@ -36,6 +36,8 @@
                                     <span class="glyphicon glyphicon-star"></span>
                                 </p>
                             </div>
+                            <button class="btn btn-primary">Add To Cart</button>
+                    <button class="btn btn-default">Add To Wishlist</button>
                         </div>
                     </div>
                     @endforeach

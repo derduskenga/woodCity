@@ -11,9 +11,9 @@ class Cart extends Model
 
     protected $fillable = array('client_id','product_id','amount','total');
 
-    public function Books(){
+    public function products(){
 
-        return $this->belongsTo('Product','product_id');
+        return $this->belongsTo('App\Product','product_id');
 
     }
 }

@@ -22,11 +22,20 @@ Route::get('/home', 'HomeController@index')->name('homepage');
 
 Route::get('/profile', 'ClientController@index')->name('profile.show');
 
+Route::get('/product/{id}', 'ProductController@show')->name('product.detail');
 
-Route::group(['prefix' => 'shop'], function () {
+
+Route::group(['middleware'=>'auth', 'prefix' => 'shop'], function () {
     
-    Route::get('/cart', 'CartController@index')->name('cart.index');
-    Route::get('/product/{id}', 'ProductController@show')->name('product.detail');
+    // TODO: added the auth on specific route
+    
+    Route::get('/cart', 'CartController@getIndex')->name('cart.index');
+    
+    // CART ROUTES
+    Route::post('/cart/add', 'CartController@postAddToCart')->name('add-to-cart');
+    Route::get('/cart/delete/{id}', 'CartController@getDelete')->name('delete-from-cart');
+
+
     
 });
 
