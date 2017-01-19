@@ -105,11 +105,15 @@
                     <li>Adipiscing Elit</li>
                 </ul>
                 <div>
-                    <br>
-                    Quatity: <input class="" type="number" name="qty"/>
-                    <br><br>
-                    <button class="btn btn-primary">Add To Cart</button>
-                    <button class="btn btn-default">Add To Wishlist</button>
+                    {!! Form::open(['route' => 'cart.add']) !!}
+                        <br>
+                        Quatity: <input class="form-control" type="number" name="quantity" value="0"/>
+                        <input type="hidden" name="product_id" value="{{ $product->id }}"/>
+                        <br><br>
+                        <button type="submit" class="btn btn-primary">Add To Cart</button>
+                        <button class="btn btn-default">Add To Wishlist</button>
+                    {!! Form::close() !!}
+                    
                 </div>
             </div>
 

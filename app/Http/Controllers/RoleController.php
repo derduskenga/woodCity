@@ -19,6 +19,7 @@ class RoleController extends Controller
     {
         //
         $roles = Role::all();
+        // return $roles;
         return view("modules.admin.role.index", ['roles' => $roles]);
     }
 

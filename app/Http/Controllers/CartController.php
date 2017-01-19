@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Client;
+use Auth;
+use App\Cart;
+use App\Product;
+use View;
+use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
@@ -24,18 +30,19 @@ public function postAddToCart(Request $request)
           return redirect()->back()->with('error','The book could not added to your cart!');
       }
 
-       $client_id = Client::where('user_id', Auth::id())->first();
-      $product_id = Input::get('product_id');
-      $quantity = Input::get('quantity');
+      // $client_id = Client::where('user_id', Auth::id())->first();
+      $client_id = Client::where('user_id',"=", Auth::id())->first()->id;
+      $product_id = $request->input('product_id');
+      $quantity = $request->input('quantity');
 
       $product = Product::find($product_id);
-      $total = $quantity*$product->price;
+      $total = abs($quantity * $product->price);
 
        $count = Cart::where('product_id','=',$product_id)->where('client_id','=',$client_id)->count();
 
        if($count){
 
-         return redirect()->back()->with('error','The book already in your cart.');
+         return redirect()->back()->with('error','The product already in your cart.');
        }
 
       Cart::create(
@@ -45,8 +52,12 @@ public function postAddToCart(Request $request)
         'quantity'=>$quantity,
         'total'=>$total
         ));
+        
+        // $cart = Cart::where('client_id', $client_id)->get();
 
-      return view('shop.cart');
+      // return view('shop.cart');
+      
+      return redirect()->route('cart.index');
   }
 
 
@@ -54,7 +65,7 @@ public function postAddToCart(Request $request)
       
       // TODO: get to save the client id in the sessions
 
-    $client_id = Client::where('user_id', Auth::id())->first();
+    $client_id = Client::where('user_id', Auth::id())->first()->id;
 
     $cart_products=Cart::with('products')->where('client_id','=',$client_id)->get();
 

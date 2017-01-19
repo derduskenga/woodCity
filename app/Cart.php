@@ -9,7 +9,7 @@ class Cart extends Model
     //
     protected $table = 'carts';
 
-    protected $fillable = array('client_id','product_id','amount','total');
+    protected $fillable = array('client_id','product_id','quantity','total');
 
     public function products(){
 

@@ -32,8 +32,8 @@ Route::group(['middleware'=>'auth', 'prefix' => 'shop'], function () {
     Route::get('/cart', 'CartController@getIndex')->name('cart.index');
     
     // CART ROUTES
-    Route::post('/cart/add', 'CartController@postAddToCart')->name('add-to-cart');
-    Route::get('/cart/delete/{id}', 'CartController@getDelete')->name('delete-from-cart');
+    Route::post('/cart/add', 'CartController@postAddToCart')->name('cart.add');
+    Route::get('/cart/delete/{id}', 'CartController@getDelete')->name('cart.delete');
 
 
     
