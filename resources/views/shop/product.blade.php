@@ -107,7 +107,7 @@
                 <div>
                     {!! Form::open(['route' => 'cart.add']) !!}
                         <br>
-                        Quatity: <input class="form-control" type="number" name="quantity" value="0"/>
+                        Quatity: <input class="form-control" type="number" name="quantity" value="1"/>
                         <input type="hidden" name="product_id" value="{{ $product->id }}"/>
                         <br><br>
                         <button type="submit" class="btn btn-primary">Add To Cart</button>

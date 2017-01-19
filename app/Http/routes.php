@@ -29,13 +29,17 @@ Route::group(['middleware'=>'auth', 'prefix' => 'shop'], function () {
     
     // TODO: added the auth on specific route
     
-    Route::get('/cart', 'CartController@getIndex')->name('cart.index');
-    
     // CART ROUTES
+    Route::get('/cart', 'CartController@getIndex')->name('cart.index');
     Route::post('/cart/add', 'CartController@postAddToCart')->name('cart.add');
     Route::get('/cart/delete/{id}', 'CartController@getDelete')->name('cart.delete');
-
-
+    
+    // CHECKOUT ROUTE
+    Route::get('checkout', 'CartController@getCheckout')->name('checkout');
+    
+    // Order ROUTES
+    Route::post('/order', 'OrderController@store')->name('order.add');
+    Route::get('/user/orders', 'OrderController@index')->name('client.orders');
     
 });
 
@@ -49,7 +53,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'client'], function () {
 
     Route::post('/address/add', 'AddressController@store')->name('client.address.add');
 
-    Route::get('/orders', 'OrderController@index')->name('client.orders');
+    // Route::get('/orders', 'OrderController@index')->name('client.orders');
 
 });
 

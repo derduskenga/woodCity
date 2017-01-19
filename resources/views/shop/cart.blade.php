@@ -33,7 +33,7 @@
                         <div class="media">
                             <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
                             <div class="media-body">
-                                <h4 class="media-heading"><a href="{{ route('product.detail', $product->product_id) }}">{{ App\Product::find($product->product_id)->name }}</a></h4>
+                                <h4 class="media-heading"><a href="{{ route('product.detail', $product->product_id) }}">{{ $product->products->name }}</a></h4>
                                 <h5 class="media-heading"> by <a href="#">###Brand name</a></h5>
                                 <span>Status: </span><span class="text-success"><strong>###In Stock</strong></span>
                             </div>
@@ -41,15 +41,15 @@
                         <td class="col-sm-1 col-md-1" style="text-align: center">
                         <input type="number" class="form-control" id="exampleInputEmail1" value="{{ $product->quantity }}">
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>${{ App\Product::find($product->product_id)->price }}</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>${{ $product->products->price }}</strong></td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>${{ $product->total }}</strong></td>
                         <td class="col-sm-1 col-md-1">
                         <a href="{{ route('cart.delete', $product->product_id) }}" type="button" class="btn btn-danger">
                             <span class="glyphicon glyphicon-remove"></span> Remove
                         </a></td>
                     </tr>
+                    
                     @endforeach
-                
                 </tbody>
                 <tfoot>
                     <tr>
@@ -68,9 +68,10 @@
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                         </button></td>
                         <td>
-                        <button type="button" class="btn btn-success">
-                            Checkout <span class="glyphicon glyphicon-play"></span>
-                        </button></td>
+                            <a type="button" class="btn btn-success" href="{{ route('checkout') }}">
+                                Checkout <span class="glyphicon glyphicon-play"></span>
+                            </a>
+                        </td>
                     </tr>
                 </tfoot>
             </table>

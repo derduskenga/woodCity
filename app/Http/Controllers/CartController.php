@@ -31,7 +31,7 @@ public function postAddToCart(Request $request)
       }
 
       // $client_id = Client::where('user_id', Auth::id())->first();
-      $client_id = Client::where('user_id',"=", Auth::id())->first()->id;
+      $client_id = Auth::user()->client->id;
       $product_id = $request->input('product_id');
       $quantity = $request->input('quantity');
 
@@ -65,11 +65,11 @@ public function postAddToCart(Request $request)
       
       // TODO: get to save the client id in the sessions
 
-    $client_id = Client::where('user_id', Auth::id())->first()->id;
+    $client = Auth::user()->client;
 
-    $cart_products=Cart::with('products')->where('client_id','=',$client_id)->get();
+    $cart_products=$client->cart;
 
-    $cart_total=Cart::with('products')->where('client_id','=',$client_id)->sum('total');
+    $cart_total=$cart_products->sum('total');
 
     if(!$cart_products){
 
@@ -82,10 +82,20 @@ public function postAddToCart(Request $request)
   }
 
   public function getDelete($id){
+    
+    $client = Auth::user()->client;
 
-    $cart = Cart::find($id)->delete();
+    $cart = $client->cart()->destroy($id);
 
     return redirect()->back();
+  }
+  
+  public function getCheckout(){
+    
+    $client = Auth::user();
+    
+    return View::make('shop.checkout')->with('client', $client);
+    
   }
   
   
